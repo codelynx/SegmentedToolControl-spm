@@ -62,16 +62,11 @@ open class SegmentedItemView: UIView {
 		}
 	}
 
-	private lazy var setup: (()->()) = {
-		self.image = item.image
-		return {}
-	}()
-
 	override open func layoutSubviews() {
-		self.setup()
 		super.layoutSubviews()
 		self.backgroundColor = UIColor.white
 		self.imageView.frame = self.bounds.insetBy(dx: 1, dy: 1)
+		self.image = self.item.image.resizing(to: self.bounds.size)
 	}
 
 	override open func draw(_ rect: CGRect) {
